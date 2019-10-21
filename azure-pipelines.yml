@@ -1,0 +1,26 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildNumber: 0.0.$(Build.BuildId)
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'pmorelli92-docker-hub'
+    repository: 'pmorelli92/go-with-azure'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(buildNumber)
+      latest
+- bash: sed -i "s/latest/$(buildNumber)/g" kubernetes/k8s-deployment.yml
+- task: Kubernetes@0
+  inputs:
+    kubernetesServiceConnection: 'pmorelli92-kubesail'
+    namespace: pmorelli92
+    command: apply
+    arguments: '-f kubernetes/k8s-deployment.yml'
