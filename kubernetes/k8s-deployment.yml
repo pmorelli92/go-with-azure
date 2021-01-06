@@ -48,7 +48,8 @@ metadata:
   name: gwa-ingress
 spec:
   rules:
-    - http:
+    - host: gwa-service-pmorelli92.cloud.okteto.net
+      http:
         paths:
           - path: /
             backend:
