@@ -20,7 +20,7 @@ steps:
 - bash: sed -i "s/latest/$(buildNumber)/g" kubernetes/k8s-deployment.yml
 - task: Kubernetes@0
   inputs:
-    kubernetesServiceConnection: 'pmorelli92-kubesail'
+    kubernetesServiceConnection: 'pmorelli92-okteto'
     namespace: pmorelli92
     command: apply
     arguments: '-f kubernetes/k8s-deployment.yml'
