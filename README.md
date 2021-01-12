@@ -1,0 +1,1 @@
+[![Build Status](https://dev.azure.com/pabmorelli/GoWithAzure/_apis/build/status/pmorelli92.go-with-azure?branchName=master)](https://dev.azure.com/pabmorelli/GoWithAzure/_build/latest?definitionId=1&branchName=master)
