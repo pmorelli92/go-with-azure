@@ -1,6 +1,13 @@
 trigger:
 - master
 
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - master
+
 pool:
   vmImage: 'ubuntu-20.04'
 
