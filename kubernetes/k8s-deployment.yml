@@ -35,28 +35,6 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 60
 ---
-apiVersion: batch/v1beta1
-kind: CronJob
-metadata:
-  name: keepalive
-spec:
-  schedule: "*/1 * * * *"
-  concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 1
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: keepalive
-            image: buildpack-deps:curl
-            args:
-            - /bin/sh
-            - -ec
-            - curl https://gwa-service-pmorelli92.cloud.okteto.net/health
-          restartPolicy: Never
----
 kind: Service
 apiVersion: v1
 metadata:
